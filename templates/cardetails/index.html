@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %} car records {% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" width="60%">
+                    Dropdown button
+                </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+              </div>
+            </div>
+
+            </div>
+
+
+        <div class="col-sm-8">
+            <table class="table table-success table-hover table-bordered" name="mytable">
+    <thead>
+        <tr class="table-danger">
+            <td>Id</td>
+            <td>Name</td>
+            <td>Brand</td>
+            <td>Breif Description</td>
+            <td>Description</td>
+            <td>Image</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for car in carresults %}
+        <tr>
+            <td>{{car.id}}</td>
+            <td>{{car.name}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.briefdiscriptions}}</td>
+            <td>{{car.discription}}</td>
+            <td><img src="{{car.image.url}}" width="200px" height="200px"/></td>
+
+            <td>
+                <a href="#" onclick="editRecord({{ car.id }})"><i class="fas fa-edit"></i></a>
+                 <a href="#" onclick="deleteRecord({{ car.id }})" id="deletebtn"><i class="fas fa-trash-alt"></i></a>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+    </table>
+        </div>
+    </div><!--row div-->
+
+    <div class="button" align="center">
+         <a href="/cardetailes/add" class="btn btn-primary">ADD CAR</a>
+    </div>
+</div> <!-- container div -->
+
+
+<div style="margin-bottom:200px;"></div>
+<script>
+
+function deleteRecord(carid)
+{
+    var status = confirm("Are you sure to delete the record");
+    if(status)
+    {
+        console.log("Deleted");
+        window.location =  "http://127.0.0.1:8000/cardetailes/delete/"+ carid;
+    }
+    else
+    {
+        console.log("Not deleted");
+    }
+
+    console.log(carid);
+    console.log("CLICK");
+}
+
+
+function editRecord(carid)
+{
+    window.location =  "http://127.0.0.1:8000/cardetailes/edit/"+ carid;
+}
+
+</script>
+
+{% endblock %}

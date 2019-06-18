@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+  Hi {{ user.username }}!
+
+  <p><a href="{% url 'logout' %}">logout</a></p>
+	{% endif %}
+			<div class="card-deck">
+				<div class="card bg-success" style="width:400px">
+					<img class="card-img-top" src="/media/pic_folder/jeep.jpg" alt="Card image" >
+					<div class="card-body">
+					  <h4 class="card-title">John Doe</h4>
+					  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+					  <a href="#" class="btn btn-primary">See Profile</a>
+					</div>
+				</div>
+
+					  <div class="card bg-danger" style="width:400px;">
+							<img class="card-img-top" src="/media/pic_folder/maruti.jpg" alt="Card image" >
+							<div class="card-body">
+							  <h4 class="card-title">Huandi</h4>
+							  <p class="card-text">Some example text.</p>
+							  <a href="#" class="btn btn-primary stretched-link">Details</a>
+							</div>
+						  </div>
+
+						  <div class="card bg-secondary" style="width:400px">
+								<img class="card-img-top" src="/media/pic_folder/Nissan.jpg" alt="Card image">
+								<div class="card-body">
+								  <h4 class="card-title">Toyota</h4>
+								  <p class="card-text">Some example text.</p>
+								  <a href="#" class="btn btn-primary">Details</a>
+								</div>
+							  </div>
+			</div>
+{% endblock %}
